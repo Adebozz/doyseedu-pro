@@ -3,7 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  --brand: 0, 5, 48; /* rgb(0,5,48) */
+  --brand: 0, 5, 48;
+  --header-h: 64px;
 }
 
 @theme inline {
@@ -20,13 +21,13 @@
   }
 }
 
-
 html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;         /* ✅ kill sideways scroll */
   scroll-behavior: smooth;
 }
 
-section[id] {
-  scroll-margin-top: var(--header-h);
-}
+section[id] { scroll-margin-top: var(--header-h); }
 
-
+img, video { max-width: 100%; height: auto; display: block; }

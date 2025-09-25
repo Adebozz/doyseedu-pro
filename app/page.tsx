@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import FAQ from "@/components/FAQ";
-import { motion } from "framer-motion";
 
 export default function HomePage() {
   return (
@@ -13,26 +12,21 @@ export default function HomePage() {
       {/* HOME / HERO */}
       <AnimatedSection
         id="home"
-        className="relative h-[75vh] min-h-[480px] grid place-items-center bg-[url('/images/pic.jpg')] bg-cover bg-center"
+        className="relative w-full h-[75vh] min-h-[480px] grid place-items-center bg-[url('/images/pic.jpg')] bg-cover bg-center"
       >
         <div className="absolute inset-0 bg-[rgba(0,5,48,0.7)]" />
-        <div className="relative container text-center text-white">
-          <motion.div
-            className="mx-auto max-w-2xl rounded-2xl border border-white/60 bg-white/5 p-8"
-            initial={{ opacity: 0, scale: 0.97 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+        <div className="relative mx-auto max-w-screen-xl px-4 text-center text-white">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-white/60 bg-white/5 p-8">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Goal</h1>
             <p className="italic text-lg md:text-xl">
               “Quality education at your fingertips”
             </p>
-          </motion.div>
+          </div>
         </div>
       </AnimatedSection>
 
       {/* ABOUT */}
-      <AnimatedSection id="about" className="container py-16" delay={0.1}>
+      <AnimatedSection id="about" className="mx-auto max-w-screen-xl px-4 py-16" delay={0.1}>
         <h2 className="text-3xl md:text-4xl font-semibold pb-2 border-b-2 border-[rgba(0,5,48,0.7)]">
           About us
         </h2>
@@ -43,6 +37,7 @@ export default function HomePage() {
               src="/images/book.jpg"
               alt="Open book"
               fill
+              sizes="(min-width: 768px) 50vw, 100vw"
               className="object-cover rounded"
               priority
             />
@@ -74,11 +69,11 @@ export default function HomePage() {
       {/* WHY US */}
       <AnimatedSection
         id="why"
-        className="relative h-[260px] grid place-items-center bg-[url('/images/pic2.jpg')] bg-cover bg-center"
+        className="relative w-full h-[260px] grid place-items-center bg-[url('/images/pic2.jpg')] bg-cover bg-center"
         delay={0.15}
       >
         <div className="absolute inset-0 bg-[rgba(2,2,44,0.55)]" />
-        <div className="relative container text-center text-white">
+        <div className="relative mx-auto max-w-screen-xl px-4 text-center text-white">
           <h2 className="text-3xl font-semibold mb-3">Why Pick Us?</h2>
           <p className="text-lg">
             We offer global placement opportunities that make admission and visa processing an easy ride.
@@ -88,7 +83,7 @@ export default function HomePage() {
       </AnimatedSection>
 
       {/* WHERE TO STUDY */}
-      <AnimatedSection id="where" className="container py-14" delay={0.2}>
+      <AnimatedSection id="where" className="mx-auto max-w-screen-xl px-4 py-14" delay={0.2}>
         <h2 className="text-2xl md:text-3xl font-semibold underline text-center mb-10">
           Countries we work with:
         </h2>
@@ -101,14 +96,14 @@ export default function HomePage() {
       </AnimatedSection>
 
       {/* CONTACT */}
-      <AnimatedSection id="contact" className="relative" delay={0.25}>
-        <div className="relative h-40 md:h-56 bg-[url('/images/scoo.jpg')] bg-cover bg-center">
+      <AnimatedSection id="contact" className="relative w-full" delay={0.25}>
+        <div className="relative w-full h-40 md:h-56 bg-[url('/images/scoo.jpg')] bg-cover bg-center">
           <div className="absolute inset-0 bg-[rgba(0,5,48,0.70)] grid place-items-center">
             <h2 className="text-white text-3xl md:text-4xl font-semibold">Reach Us</h2>
           </div>
         </div>
 
-        <div className="container py-12">
+        <div className="mx-auto max-w-screen-xl px-4 py-12">
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="grid gap-6 sm:grid-cols-2">
               <InfoCard title="Phone" value="08033321603" />
@@ -123,7 +118,7 @@ export default function HomePage() {
       </AnimatedSection>
 
       {/* FAQ */}
-      <AnimatedSection className="container py-16" delay={0.2}>
+      <AnimatedSection className="mx-auto max-w-screen-xl px-4 py-16" delay={0.2}>
         <h2 className="text-2xl md:text-3xl font-semibold mb-6">Frequently Asked Questions</h2>
         <FAQ
           items={[
@@ -148,29 +143,24 @@ export default function HomePage() {
   );
 }
 
-/* === Local UI helpers === */
+/* === Local helpers === */
 
 function CountryCard({ src, alt, label }: { src: string; alt: string; label: string }) {
   return (
-    <motion.div
-      className="relative rounded-xl overflow-hidden shadow group"
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.5, ease: "easeOut" }}
-    >
+    <div className="relative rounded-xl overflow-hidden shadow group transition-transform hover:-translate-y-0.5 hover:shadow">
       <div className="relative aspect-[16/10]">
         <Image
           src={src}
           alt={alt}
           fill
+          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
       <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity grid place-items-center">
         <span className="text-white font-semibold">{label}</span>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -222,14 +212,12 @@ function ContactForm() {
         required
         className="border rounded px-3 py-2"
       />
-      <motion.button
+      <button
         type="submit"
         className="justify-self-start rounded bg-[rgb(0,5,48)] text-white px-4 py-2 hover:opacity-90"
-        whileTap={{ scale: 0.98 }}
-        whileHover={{ scale: 1.02 }}
       >
         Send
-      </motion.button>
+      </button>
       <p className="text-xs text-gray-500">We’ll get back to you shortly.</p>
     </form>
   );

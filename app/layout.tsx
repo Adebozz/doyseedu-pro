@@ -10,8 +10,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="min-h-screen text-gray-800 bg-white">
+    <html lang="en" className="w-full max-w-full overflow-x-hidden">
+      <body className="min-h-screen w-full max-w-full overflow-x-hidden text-[var(--color-foreground)] bg-[var(--color-background)]">
         {children}
 
         {/* Tawk.to */}
@@ -27,6 +27,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               s0.parentNode.insertBefore(s1,s0);
             })();
           `}
+        </Script>
+
+        {/* JSON-LD */}
+        <Script id="org-schema" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "EducationalOrganization",
+            "name": "Doyse Educational Consults",
+            "url": "https://your-domain.com",
+            "logo": "https://your-domain.com/images/doyseedu.svg",
+            "description": "Study abroad placements, visa guidance, and student support.",
+            "sameAs": ["https://www.facebook.com/yourpage"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "+2348033321603",
+              "contactType": "Customer Service",
+              "areaServed": ["NG","GB","US","CA","DE"]
+            }
+          })}
         </Script>
       </body>
     </html>
