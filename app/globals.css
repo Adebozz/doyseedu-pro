@@ -25,4 +25,8 @@ html, body {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: var(--header-h);
+}
+
 
