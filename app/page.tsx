@@ -1,103 +1,98 @@
 import Image from "next/image";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <Header />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero */}
+      <section
+        className="relative h-[75vh] min-h-[480px] grid place-items-center bg-[url('/images/pic.jpg')] bg-cover bg-center"
+        aria-label="Our Goal"
+      >
+        <div className="absolute inset-0 bg-[rgba(0,5,48,0.7)]" />
+        <div className="relative container text-center text-white">
+          <div className="mx-auto max-w-2xl rounded-2xl border border-white/60 bg-white/5 p-8">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Goal</h1>
+            <p className="italic text-lg md:text-xl">
+              “Quality education at your fingertips”
+            </p>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* About */}
+      <section id="about" className="container py-16">
+        <h2 className="text-3xl md:text-4xl font-semibold pb-2 border-b-2 border-[rgba(0,5,48,0.7)]">
+          About us
+        </h2>
+
+        <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-start">
+          <div className="relative aspect-[4/3]">
+            <Image
+              src="/images/book.jpg"
+              alt="Open book"
+              fill
+              className="object-cover rounded"
+              priority
+            />
+          </div>
+
+          <div className="space-y-4 leading-relaxed">
+            <p>
+              DOYSE EDUCATIONAL CONSULTS is an educational consulting firm in Nigeria
+              offering study abroad placement opportunities to prospective students.
+              We have global placement opportunities that our students can benefit from.
+              This makes securing admission and processing their visa application an easy ride.
+              Students are able to count on our professionalism and expertise in this area.
+            </p>
+            <p>
+              We render expert advice without bias. Our partner institutions range from Colleges
+              to Universities, offering programs from Certificates, Diplomas, Associate Degrees,
+              Graduate Certificates, Graduate Diplomas, Masters (Coursework & Research), and Doctorates.
+              We also assist with accommodation through our partner institutions.
+            </p>
+            <p>
+              Students can rely on our expertise in counseling and packaging their visa applications.
+              Without a valid study permit or visa, an international student may not enroll in a program.
+              Therefore, it is crucial that applications are properly done to meet the requirements
+              as stated by various embassies and High Commissions. Based on our experience, clients can
+              expect excellent service from us.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why pick us */}
+      <section
+        className="relative h-[260px] grid place-items-center bg-[url('/images/pic2.jpg')] bg-cover bg-center"
+      >
+        <div className="absolute inset-0 bg-[rgba(2,2,44,0.55)]" />
+        <div className="relative container text-center text-white">
+          <h2 className="text-3xl font-semibold mb-3">Why Pick Us?</h2>
+          <p className="text-lg">
+            We offer global placement opportunities that make admission and visa processing an easy ride.
+            We provide expert advice to all students without bias.
+          </p>
+        </div>
+      </section>
+
+      {/* Countries */}
+      <section className="container py-14">
+        <h2 className="text-2xl md:text-3xl font-semibold underline text-center mb-10">
+          Countries we work with:
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 place-items-center">
+          <Image src="/images/uk.jpg" alt="United Kingdom" width={240} height={140} className="rounded object-cover w-full h-auto" />
+          <Image src="/images/us.jpg" alt="United States"   width={240} height={140} className="rounded object-cover w-full h-auto" />
+          <Image src="/images/germeny.jpg" alt="Germany"    width={240} height={140} className="rounded object-cover w-full h-auto" />
+          <Image src="/images/canada.jpg" alt="Canada"      width={240} height={140} className="rounded object-cover w-full h-auto" />
+        </div>
+      </section>
+
+      <Footer />
+    </>
   );
 }
