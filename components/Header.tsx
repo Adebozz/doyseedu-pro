@@ -3,49 +3,56 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
+
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/#where", label: "Destinations" },
+  { href: "/scholarships", label: "Scholarships" },
+  { href: "/eligibility-checker", label: "Eligibility checker" },
+  { href: "/#faq", label: "FAQ" },
+];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header
-      className="w-full sticky top-0 z-40 bg-[rgba(0,5,48,0.85)] text-white backdrop-blur border-b"
-      style={{ height: "var(--header-h)" }}
-    >
-      <div className="mx-auto max-w-screen-xl px-4 h-full flex items-center justify-between">
+    <header className="w-full sticky top-0 z-40 bg-brand text-white" style={{ height: "var(--header-h)" }}>
+      <div className="wrap h-full flex items-center justify-between">
         <Link href="/#home" className="flex items-center gap-3">
-          <Image src="/images/logo.png" alt="Doyse Educational Consults logo" width={40} height={40} priority />
-          <h4 className="font-semibold tracking-wide">DOYSE EDUCATIONAL CONSULTS</h4>
+          <Image src="/images/logo.png" alt="" width={40} height={40} priority />
+          <span className="leading-tight">
+            <span className="block font-bold tracking-wide">DOYSE</span>
+            <span className="block text-xs text-white/80">Educational Consults</span>
+          </span>
         </Link>
 
         <button aria-label="Toggle menu" aria-expanded={open} className="lg:hidden p-3" onClick={() => setOpen(v => !v)}>
-          <FaBars className="text-xl" />
+          {open ? <FaTimes className="text-xl" /> : <FaBars className="text-xl" />}
         </button>
 
         <nav className="hidden lg:block">
-          <ul className="flex items-center gap-4 xl:gap-6 whitespace-nowrap text-sm">
-            <li><Link className="hover:text-cyan-300" href="/#home">HOME</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/#about">ABOUT</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/#why">WHY US ?</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/#where">WHERE TO STUDY ?</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/scholarships">SCHOLARSHIPS</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/eligibility-checker">ELIGIBILITY</Link></li>
-            <li><Link className="hover:text-cyan-300" href="/#contact">CONTACT</Link></li>
+          <ul className="flex items-center gap-7 whitespace-nowrap text-sm font-medium">
+            {links.map((link) => (
+              <li key={link.href}><Link className="hover:text-cyan-300" href={link.href}>{link.label}</Link></li>
+            ))}
+            <li>
+              <Link className="inline-block rounded-lg bg-white px-4 py-2 font-semibold text-brand hover:bg-brand-soft" href="/#contact">
+                Contact us
+              </Link>
+            </li>
           </ul>
         </nav>
       </div>
 
       {open && (
-        <div className="lg:hidden border-t border-white/10 bg-[rgba(0,5,48,0.95)]">
-          <ul className="mx-auto max-w-screen-xl px-4 flex flex-col py-3 gap-3 text-sm">
-            <li><Link href="/#home" onClick={() => setOpen(false)}>HOME</Link></li>
-            <li><Link href="/#about" onClick={() => setOpen(false)}>ABOUT</Link></li>
-            <li><Link href="/#why" onClick={() => setOpen(false)}>WHY US ?</Link></li>
-            <li><Link href="/#where" onClick={() => setOpen(false)}>WHERE TO STUDY ?</Link></li>
-            <li><Link href="/scholarships" onClick={() => setOpen(false)}>SCHOLARSHIPS</Link></li>
-            <li><Link href="/eligibility-checker" onClick={() => setOpen(false)}>ELIGIBILITY</Link></li>
-            <li><Link href="/#contact" onClick={() => setOpen(false)}>CONTACT</Link></li>
+        <div className="lg:hidden border-t border-white/10 bg-brand">
+          <ul className="wrap flex flex-col py-2 font-medium">
+            {[...links, { href: "/#contact", label: "Contact us" }].map((link) => (
+              <li key={link.href}>
+                <Link className="block py-3" href={link.href} onClick={() => setOpen(false)}>{link.label}</Link>
+              </li>
+            ))}
           </ul>
         </div>
       )}

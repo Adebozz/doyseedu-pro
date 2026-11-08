@@ -20,23 +20,23 @@ export default function ScholarshipList({ scholarships }: { scholarships: Schola
             type="button"
             aria-pressed={level === filter.value}
             onClick={() => setLevel(filter.value)}
-            className={`min-h-11 rounded border px-4 py-2 text-sm font-semibold ${
-              level === filter.value ? "bg-[rgb(0,5,48)] text-white border-[rgb(0,5,48)]" : ""
+            className={`min-h-11 rounded-full border px-5 py-2 text-sm font-semibold ${
+              level === filter.value ? "bg-brand text-white border-brand" : "bg-white text-brand border-line hover:bg-brand-soft"
             }`}
           >
             {filter.label}
           </button>
         ))}
       </div>
-      <p aria-live="polite" className="text-sm text-gray-600 mb-6">
+      <p aria-live="polite" className="text-sm text-muted mb-6">
         Showing {visible.length} of {scholarships.length} scholarships
       </p>
 
       <ul className="grid gap-6 lg:grid-cols-2">
         {visible.map((s) => (
-          <li key={s.name} className="flex flex-col rounded-xl border p-6 shadow-sm">
-            <h2 className="text-xl font-semibold">{s.name}</h2>
-            <p className="text-sm text-gray-600 mt-1">
+          <li key={s.name} className="card flex flex-col">
+            <h2 className="text-xl font-bold text-brand">{s.name}</h2>
+            <p className="text-sm text-muted mt-1">
               {s.where} · {s.levels.join(", ")}
             </p>
             <p className="mt-3 leading-relaxed">{s.funding}</p>
@@ -50,14 +50,14 @@ export default function ScholarshipList({ scholarships }: { scholarships: Schola
               {s.status.text}
             </p>
 
-            <h3 className="font-semibold mt-4 mb-2">Requirements</h3>
+            <h3 className="font-bold text-brand mt-4 mb-2">Requirements</h3>
             <ul className="list-disc space-y-1 pl-5 text-sm leading-relaxed">
               {s.requirements.map((requirement) => (
                 <li key={requirement}>{requirement}</li>
               ))}
             </ul>
 
-            <h3 className="font-semibold mt-4 mb-1">How to apply</h3>
+            <h3 className="font-bold text-brand mt-4 mb-1">How to apply</h3>
             <p className="text-sm leading-relaxed">{s.apply}</p>
 
             <a
@@ -65,7 +65,7 @@ export default function ScholarshipList({ scholarships }: { scholarships: Schola
               target="_blank"
               rel="noopener noreferrer"
               aria-label={`Official website for ${s.name}`}
-              className="mt-auto inline-block pt-4 pb-2 text-sm font-semibold underline"
+              className="mt-auto inline-block pt-4 pb-2 text-sm font-semibold text-brand underline"
             >
               Official website
             </a>

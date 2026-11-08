@@ -27,17 +27,17 @@ export default function EligibilityCheckerPage() {
       <Header />
 
       <main id="main">
-        <section className="bg-[rgb(0,5,48)] text-white">
-          <div className="mx-auto max-w-screen-xl px-4 py-14">
-            <h1 className="text-3xl md:text-5xl font-bold">Check your study abroad eligibility</h1>
-            <p className="mt-4 max-w-2xl text-lg text-white/90">
+        <section className="page-hero">
+          <div className="wrap">
+            <h1 className="page-title">Check your study abroad eligibility</h1>
+            <p className="page-intro">
               Answer seven quick questions to see what to prepare. Nothing is saved or sent unless you
               choose to share it with us.
             </p>
           </div>
         </section>
 
-        <div className="mx-auto max-w-2xl px-4 py-12">
+        <div className="mx-auto max-w-2xl px-4 py-12 md:py-16">
           <EligibilityChecker destinations={countries.map(({ name, slug }) => ({ name, slug }))} />
         </div>
       </main>

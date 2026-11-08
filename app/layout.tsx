@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
+
+const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], display: "swap", variable: "--font-jakarta" });
 
 const siteUrl = "https://www.doyseedu.com";
 const siteName = "Doyse Educational Consults";
@@ -32,7 +35,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="w-full max-w-full overflow-x-hidden">
+    <html lang="en" className={`${jakarta.variable} w-full max-w-full overflow-x-hidden`}>
       <body className="min-h-screen w-full max-w-full overflow-x-hidden text-[var(--color-foreground)] bg-[var(--color-background)]">
         <a
           href="#main"

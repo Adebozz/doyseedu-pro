@@ -1,6 +1,7 @@
 "use client";
 
 import type { FormEvent } from "react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export default function ContactForm({ whatsappNumber }: { whatsappNumber: string }) {
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
@@ -20,40 +21,25 @@ export default function ContactForm({ whatsappNumber }: { whatsappNumber: string
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl border p-6 shadow-sm grid gap-4">
-      <h3 className="text-xl font-semibold">Send us a message</h3>
-      <label htmlFor="contact-name" className="sr-only">Your name</label>
-      <input
-        id="contact-name"
-        name="name"
-        placeholder="Your name"
-        required
-        className="border rounded px-3 py-2"
-      />
-      <label htmlFor="contact-email" className="sr-only">Your email (optional)</label>
-      <input
-        id="contact-email"
-        type="email"
-        name="email"
-        placeholder="Your email (optional)"
-        className="border rounded px-3 py-2"
-      />
-      <label htmlFor="contact-message" className="sr-only">Your message</label>
-      <textarea
-        id="contact-message"
-        name="message"
-        placeholder="Your message"
-        rows={5}
-        required
-        className="border rounded px-3 py-2"
-      />
-      <button
-        type="submit"
-        className="justify-self-start min-h-11 rounded bg-[rgb(0,5,48)] text-white px-4 py-2 hover:opacity-90"
-      >
+    <form onSubmit={handleSubmit} className="card grid gap-4">
+      <h3 className="text-xl font-bold text-brand">Send us a message</h3>
+      <div>
+        <label htmlFor="contact-name" className="field-label">Your name</label>
+        <input id="contact-name" name="name" autoComplete="name" required className="field" />
+      </div>
+      <div>
+        <label htmlFor="contact-email" className="field-label">Your email (optional)</label>
+        <input id="contact-email" type="email" name="email" autoComplete="email" className="field" />
+      </div>
+      <div>
+        <label htmlFor="contact-message" className="field-label">Your message</label>
+        <textarea id="contact-message" name="message" rows={5} required className="field" />
+      </div>
+      <button type="submit" className="btn btn-whatsapp sm:justify-self-start">
+        <FaWhatsapp aria-hidden="true" className="text-xl" />
         Continue on WhatsApp
       </button>
-      <p className="text-xs text-gray-500">
+      <p className="text-xs text-muted">
         This opens WhatsApp with your message filled in. Press send there to reach us.
       </p>
     </form>

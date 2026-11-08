@@ -162,16 +162,16 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
     ].join("\n");
 
     return (
-      <div className="rounded-xl border p-6 shadow-sm">
-        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-semibold mb-2 outline-none">
+      <div className="card">
+        <h2 ref={headingRef} tabIndex={-1} className="text-2xl font-bold text-brand mb-2 outline-none">
           Your pre-check summary
         </h2>
-        <p className="text-sm text-gray-600 mb-6">
+        <p className="text-sm text-muted mb-6">
           This is a quick guide, not an admission or visa decision. Requirements vary by course and
           institution.
         </p>
 
-        <h3 className="font-semibold mb-2">{notes.length ? "Things to look at" : "Nothing stands out"}</h3>
+        <h3 className="font-bold text-brand mb-2">{notes.length ? "Things to look at" : "Nothing stands out"}</h3>
         {notes.length ? (
           <ul className="list-disc space-y-2 pl-5 leading-relaxed mb-6">
             {notes.map((note) => (
@@ -187,7 +187,7 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
 
         {destination && (
           <p className="mb-6">
-            <Link href={`/study-abroad/${destination.slug}`} className="inline-block py-2 underline">
+            <Link href={`/study-abroad/${destination.slug}`} className="inline-block py-2 font-semibold text-brand underline">
               Read the {destination.name} guide
             </Link>
           </p>
@@ -195,13 +195,13 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
 
         {(answers.funding === PARTLY_FUNDED || answers.funding === NEEDS_SCHOLARSHIP) && (
           <p className="mb-6">
-            <Link href="/scholarships" className="inline-block py-2 underline">
+            <Link href="/scholarships" className="inline-block py-2 font-semibold text-brand underline">
               See scholarships open to Nigerian students
             </Link>
           </p>
         )}
 
-        <label htmlFor="checker-name" className="block font-semibold mb-1">
+        <label htmlFor="checker-name" className="field-label">
           Your name (optional)
         </label>
         <input
@@ -209,7 +209,7 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
           value={name}
           onChange={(e) => setName(e.target.value)}
           placeholder="Your name"
-          className="w-full border rounded px-3 py-2 mb-4"
+          className="field mb-4"
         />
 
         <div className="flex flex-col sm:flex-row gap-3">
@@ -217,15 +217,15 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
             href={whatsappUrl(message)}
             target="_blank"
             rel="noopener noreferrer"
-            className="rounded bg-[#25D366] text-black text-center font-semibold px-6 py-3 hover:opacity-90"
+            className="btn btn-whatsapp"
           >
             Send my answers on WhatsApp
           </a>
-          <button type="button" onClick={restart} className="min-h-11 rounded border px-6 py-3 font-semibold">
+          <button type="button" onClick={restart} className="btn btn-outline">
             Start again
           </button>
         </div>
-        <p className="mt-3 text-xs text-gray-500">
+        <p className="mt-3 text-xs text-muted">
           This opens WhatsApp with your answers filled in. Press send there to reach us.
         </p>
       </div>
@@ -237,25 +237,25 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
 
   return (
     <form
-      className="rounded-xl border p-6 shadow-sm"
+      className="card"
       onSubmit={(e) => {
         e.preventDefault();
         if (selected) goTo(step + 1);
       }}
     >
-      <p className="text-sm text-gray-600 mb-2">
+      <p className="text-sm text-muted mb-2">
         Question {step + 1} of {questions.length}
       </p>
-      <div className="h-2 rounded bg-gray-200 mb-6" aria-hidden="true">
+      <div className="h-2 rounded bg-line mb-6" aria-hidden="true">
         <div
-          className="h-2 rounded bg-[rgb(0,5,48)]"
+          className="h-2 rounded bg-brand"
           style={{ width: `${((step + 1) / questions.length) * 100}%` }}
         />
       </div>
 
       <fieldset>
         <legend className="w-full mb-4">
-          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-semibold outline-none">
+          <h2 ref={headingRef} tabIndex={-1} className="text-xl font-bold text-brand outline-none">
             {question.label}
           </h2>
         </legend>
@@ -263,8 +263,8 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
           {question.options.map((option) => (
             <label
               key={option}
-              className={`flex min-h-11 cursor-pointer items-center gap-3 rounded border px-4 py-2 ${
-                selected === option ? "border-[rgb(0,5,48)] bg-cyan-50 text-gray-900" : ""
+              className={`flex min-h-12 cursor-pointer items-center gap-3 rounded-lg border px-4 py-2 ${
+                selected === option ? "border-brand bg-brand-soft" : "border-line hover:bg-surface"
               }`}
             >
               <input
@@ -285,14 +285,14 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
           type="button"
           onClick={() => goTo(step - 1)}
           disabled={step === 0}
-          className="min-h-11 rounded border px-6 py-2 font-semibold disabled:invisible"
+          className="btn btn-outline disabled:invisible"
         >
           Back
         </button>
         <button
           type="submit"
           disabled={!selected}
-          className="min-h-11 rounded bg-[rgb(0,5,48)] text-white px-6 py-2 font-semibold hover:opacity-90 disabled:opacity-50"
+          className="btn btn-primary disabled:opacity-50"
         >
           {step === questions.length - 1 ? "See my summary" : "Next"}
         </button>

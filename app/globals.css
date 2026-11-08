@@ -1,24 +1,55 @@
 @import "tailwindcss";
 
 :root {
+  color-scheme: light;
   --background: #ffffff;
-  --foreground: #171717;
-  --brand: 0, 5, 48;
+  --foreground: #1a1f36;
+  --brand-navy: #000530;
+  --brand-soft: #eef0f8;
+  --surface: #f6f7fb;
+  --line: #dfe3ee;
+  --muted: #4a5168;
+  --whatsapp: #25d366;
   --header-h: 64px;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand: var(--brand-navy);
+  --color-brand-soft: var(--brand-soft);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-muted: var(--muted);
+  --color-whatsapp: var(--whatsapp);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@layer base {
+  *, ::before, ::after { border-color: var(--line); }
+  h1, h2, h3 { letter-spacing: -0.015em; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-6xl px-4 sm:px-6; }
+  .section { @apply py-12 md:py-20; }
+  .section-title { @apply text-3xl md:text-4xl font-bold text-brand; }
+  .section-intro { @apply mt-3 max-w-2xl text-lg leading-relaxed text-muted; }
+  .card { @apply rounded-2xl border border-line bg-white p-6 shadow-sm; }
+
+  .btn { @apply inline-flex min-h-12 items-center justify-center gap-2 rounded-lg px-6 py-3 text-center font-semibold transition-colors; }
+  .btn-whatsapp { @apply bg-whatsapp text-black hover:bg-[#1fbd5b]; }
+  .btn-primary { @apply bg-brand text-white hover:bg-[#10173f]; }
+  .btn-outline { @apply border border-brand bg-white text-brand hover:bg-brand-soft; }
+  .btn-outline-light { @apply border border-white text-white hover:bg-white/10; }
+
+  .field { @apply w-full rounded-lg border border-[#aeb5c7] bg-white px-3 py-3 text-foreground; }
+  .field-label { @apply mb-1 block text-sm font-semibold; }
+
+  .page-hero { @apply bg-brand py-14 text-white md:py-16; }
+  .page-title { @apply text-3xl md:text-5xl font-bold; }
+  .page-intro { @apply mt-4 max-w-2xl text-lg text-white/90; }
+
+  .notice { @apply rounded-2xl border-2 border-amber-500 bg-amber-50 p-6 text-gray-900; }
 }
 
 html, body {
@@ -28,6 +59,14 @@ html, body {
   scroll-behavior: smooth;
 }
 
+body { font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif; }
+
 section[id] { scroll-margin-top: var(--header-h); }
 
 img, video { max-width: 100%; height: auto; display: block; }
+
+/* Applied by AnimatedSection only after load, so content never depends on JavaScript to appear */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-pending { opacity: 0; transform: translateY(16px); }
+  .reveal-in { transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+}

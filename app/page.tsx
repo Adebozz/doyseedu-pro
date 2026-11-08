@@ -1,14 +1,58 @@
 import Image from "next/image";
 import Link from "next/link";
+import type { ReactNode } from "react";
+import {
+  FaArrowRight,
+  FaBed,
+  FaCheckCircle,
+  FaEnvelope,
+  FaGraduationCap,
+  FaPassport,
+  FaPhone,
+  FaWhatsapp,
+} from "react-icons/fa";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
 import { countries } from "@/lib/countries";
+import { scholarships } from "@/lib/scholarships";
 import { WHATSAPP_NUMBER, whatsappUrl } from "@/lib/site";
 
 const WHATSAPP_URL = whatsappUrl("Hello, I would like to ask about studying abroad.");
+
+const services = [
+  {
+    icon: <FaGraduationCap />,
+    title: "School placement",
+    text: "Find the right college or university and secure your admission, from certificates to doctorates.",
+  },
+  {
+    icon: <FaPassport />,
+    title: "Visa guidance",
+    text: "Prepare a strong application that meets the requirements of the embassy or High Commission.",
+  },
+  {
+    icon: <FaBed />,
+    title: "Accommodation support",
+    text: "We work with partner institutions to help you secure suitable accommodation.",
+  },
+];
+
+const steps = [
+  { title: "Tell us your plans", text: "Share your results, budget and where you would like to study." },
+  { title: "Choose your course", text: "We advise you on suitable options, without bias." },
+  { title: "Apply for admission", text: "We guide you through securing your place, step by step." },
+  { title: "Prepare to travel", text: "Get help with your visa application and accommodation." },
+];
+
+const reasons = [
+  "Expert advice given without bias",
+  "Partner institutions from colleges to universities",
+  "Programmes from certificates to doctorates",
+  "Visa applications prepared to embassy requirements",
+];
 
 export default function HomePage() {
   return (
@@ -17,164 +61,199 @@ export default function HomePage() {
 
       <main id="main">
         {/* HOME / HERO */}
-        <AnimatedSection
-          id="home"
-          className="relative w-full h-[75vh] min-h-[480px] grid place-items-center bg-[url('/images/pic.jpg')] bg-cover bg-center"
-        >
-          <div className="absolute inset-0 bg-[rgba(0,5,48,0.7)]" />
-          <div className="relative mx-auto max-w-screen-xl px-4 text-center text-white">
-            <div className="mx-auto max-w-2xl rounded-2xl border border-white/60 bg-white/5 p-8">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                Study abroad from Nigeria
-              </h1>
-              <p className="text-lg md:text-xl mb-2">
+        <section id="home" className="relative isolate overflow-hidden bg-brand text-white">
+          <Image src="/images/pic.jpg" alt="" fill priority sizes="100vw" className="-z-10 object-cover" />
+          <div className="absolute inset-0 -z-10 bg-linear-to-b md:bg-linear-to-r from-brand/90 via-brand/80 to-brand/70 md:to-brand/30" />
+          <div className="wrap py-20 md:py-32">
+            <div className="max-w-2xl">
+              <h1 className="text-4xl md:text-6xl font-bold leading-tight">Study abroad from Nigeria</h1>
+              <p className="mt-5 text-lg md:text-xl leading-relaxed text-white/90">
                 Placement, visa guidance and accommodation support for the UK, Canada, Germany and more.
               </p>
-              <p className="italic">“Quality education at your fingertips”</p>
-              <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
-                <a
-                  href={WHATSAPP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded bg-[#25D366] text-black font-semibold px-6 py-3 hover:opacity-90"
-                >
+              <p className="mt-3 italic text-white/90">“Quality education at your fingertips”</p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3">
+                <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="btn btn-whatsapp">
+                  <FaWhatsapp aria-hidden="true" className="text-xl" />
                   Chat with us on WhatsApp
                 </a>
-                <Link
-                  href="/eligibility-checker"
-                  className="rounded border border-white font-semibold px-6 py-3 hover:bg-white/10"
-                >
+                <Link href="/eligibility-checker" className="btn btn-outline-light">
                   Check your eligibility
                 </Link>
               </div>
             </div>
           </div>
-        </AnimatedSection>
+        </section>
 
-        {/* ABOUT */}
-        <AnimatedSection id="about" className="mx-auto max-w-screen-xl px-4 py-16" delay={0.1}>
-          <h2 className="text-3xl md:text-4xl font-semibold pb-2 border-b-2 border-[rgba(0,5,48,0.7)]">
-            About us
-          </h2>
-
-          <div className="mt-8 grid gap-8 md:grid-cols-2 md:items-start">
-            <div className="relative aspect-[4/3]">
-              <Image
-                src="/images/book.jpg"
-                alt="Open book"
-                fill
-                sizes="(min-width: 768px) 50vw, 100vw"
-                className="object-cover rounded"
-                priority
-              />
+        {/* SERVICES */}
+        <AnimatedSection id="services" className="section">
+          <div className="wrap">
+            <h2 className="section-title">How we can help</h2>
+            <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-3 md:gap-6">
+              {services.map((service) => (
+                <div key={service.title} className="card flex gap-4 p-5 md:block md:p-6">
+                  <div aria-hidden="true" className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-brand-soft text-xl text-brand">
+                    {service.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-brand md:mt-4">{service.title}</h3>
+                    <p className="mt-1 leading-relaxed text-muted md:mt-2">{service.text}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-
-            <div className="space-y-4 leading-relaxed">
-              <p>
-                DOYSE EDUCATIONAL CONSULTS is an educational consulting firm in Nigeria
-                offering study abroad placement opportunities to prospective students.
-                We have global placement opportunities that our students can benefit from.
-                We guide them through securing admission and preparing their visa application, step by step.
-                Students are able to count on our professionalism and expertise in this area.
-              </p>
-              <p>
-                We render expert advice without bias. Our partner institutions range from Colleges
-                to Universities, offering programs from Certificates, Diplomas, Associate Degrees,
-                Graduate Certificates, Graduate Diplomas, Masters (Coursework &amp; Research), and Doctorates.
-                We also assist with accommodation through our partner institutions.
-              </p>
-              <p>
-                Students can rely on our expertise in counseling and packaging their visa applications.
-                Proper applications are crucial to meet the requirements as stated by various embassies and
-                High Commissions. Based on our experience, clients can expect excellent service from us.
-              </p>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* WHY US */}
-        <AnimatedSection
-          id="why"
-          className="relative w-full h-[260px] grid place-items-center bg-[url('/images/pic2.jpg')] bg-cover bg-center"
-          delay={0.15}
-        >
-          <div className="absolute inset-0 bg-[rgba(2,2,44,0.55)]" />
-          <div className="relative mx-auto max-w-screen-xl px-4 text-center text-white">
-            <h2 className="text-3xl font-semibold mb-3">Why Pick Us?</h2>
-            <p className="text-lg">
-              We offer global placement opportunities and guide you through admission and visa processing.
-              We provide expert advice to all students without bias.
-            </p>
           </div>
         </AnimatedSection>
 
         {/* WHERE TO STUDY */}
-        <AnimatedSection id="where" className="mx-auto max-w-screen-xl px-4 py-14" delay={0.2}>
-          <h2 className="text-2xl md:text-3xl font-semibold underline text-center mb-10">
-            Countries we work with:
-          </h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {countries.map((country) => (
-              <CountryCard
-                key={country.slug}
-                href={`/study-abroad/${country.slug}`}
-                src={country.image}
-                label={country.name}
-              />
-            ))}
-          </div>
-          <p className="mt-8 text-center">
-            Looking for funding?{" "}
-            <Link href="/scholarships" className="inline-block py-2 font-semibold underline">
-              See scholarships open to Nigerian students
-            </Link>
-          </p>
-        </AnimatedSection>
-
-        {/* CONTACT */}
-        <AnimatedSection id="contact" className="relative w-full" delay={0.25}>
-          <div className="relative w-full h-40 md:h-56 bg-[url('/images/scoo.jpg')] bg-cover bg-center">
-            <div className="absolute inset-0 bg-[rgba(0,5,48,0.70)] grid place-items-center">
-              <h2 className="text-white text-3xl md:text-4xl font-semibold">Reach Us</h2>
+        <AnimatedSection id="where" className="section bg-surface">
+          <div className="wrap">
+            <h2 className="section-title">Where you can study</h2>
+            <p className="section-intro">
+              Read what each country asks for, including costs, proof of funds and visa steps.
+            </p>
+            <div className="mt-10 grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+              {countries.map((country) => (
+                <Link
+                  key={country.slug}
+                  href={`/study-abroad/${country.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-line bg-white shadow-sm transition-shadow hover:shadow-md"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden">
+                    <Image
+                      src={country.image}
+                      alt=""
+                      fill
+                      sizes="(min-width: 1024px) 25vw, 50vw"
+                      className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex flex-1 flex-col p-4">
+                    <h3 className="font-bold text-brand">{country.name}</h3>
+                    {country.notice && <p className="mt-1 text-sm text-amber-800">Visa restrictions apply</p>}
+                    <span className="mt-auto flex items-center gap-2 pt-3 text-sm font-semibold text-brand">
+                      Read the guide
+                      <FaArrowRight aria-hidden="true" className="text-xs transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+              ))}
             </div>
           </div>
+        </AnimatedSection>
 
-          <div className="mx-auto max-w-screen-xl px-4 py-12">
-            <div className="grid gap-8 lg:grid-cols-2">
-              <div className="grid gap-6">
-                <InfoCard title="Phone" value="08033321603" href="tel:+2348033321603" />
-                <InfoCard title="WhatsApp" value="08033321603" href={WHATSAPP_URL} />
-                <InfoCard
-                  title="Email"
-                  value="dyseeducationconsults@gmail.com"
-                  href="mailto:dyseeducationconsults@gmail.com"
-                />
-              </div>
+        {/* FUNDING AND ELIGIBILITY */}
+        <AnimatedSection id="start" className="section">
+          <div className="wrap grid gap-6 md:grid-cols-2">
+            <FeatureLink
+              href="/scholarships"
+              title="Looking for funding?"
+              text={`See ${scholarships.length} scholarships and sponsorships open to Nigerian students, with requirements and official links.`}
+              action="See scholarships"
+              dark
+            />
+            <FeatureLink
+              href="/eligibility-checker"
+              title="Not sure if you qualify?"
+              text="Answer seven quick questions about your results, budget and plans to see what to prepare."
+              action="Check your eligibility"
+            />
+          </div>
+        </AnimatedSection>
 
-              <ContactForm whatsappNumber={WHATSAPP_NUMBER} />
+        {/* HOW IT WORKS */}
+        <AnimatedSection id="how" className="section bg-surface">
+          <div className="wrap">
+            <h2 className="section-title">How it works</h2>
+            <ol className="mt-8 grid gap-6 sm:grid-cols-2 md:mt-10 lg:grid-cols-4">
+              {steps.map((step, index) => (
+                <li key={step.title} className="flex gap-4 lg:block">
+                  <span aria-hidden="true" className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand font-bold text-white">
+                    {index + 1}
+                  </span>
+                  <div>
+                    <h3 className="text-lg font-bold text-brand lg:mt-4">{step.title}</h3>
+                    <p className="mt-1 leading-relaxed text-muted">{step.text}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </AnimatedSection>
+
+        {/* ABOUT */}
+        <AnimatedSection id="about" className="section">
+          <div className="wrap grid gap-10 md:grid-cols-2 md:items-center">
+            <div className="relative aspect-[3/2] overflow-hidden rounded-2xl">
+              <Image
+                src="/images/pic2.jpg"
+                alt="Students smiling together in a classroom"
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div>
+              <h2 className="section-title">About Doyse</h2>
+              <p className="mt-4 text-lg leading-relaxed text-muted">
+                Doyse Educational Consults is an educational consulting firm in Nigeria. We offer study abroad
+                placement and guide students through admission and their visa application, step by step.
+              </p>
+              <ul className="mt-6 space-y-3">
+                {reasons.map((reason) => (
+                  <li key={reason} className="flex items-start gap-3">
+                    <FaCheckCircle aria-hidden="true" className="mt-1 shrink-0 text-whatsapp" />
+                    <span>{reason}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </AnimatedSection>
 
         {/* FAQ */}
-        <AnimatedSection className="mx-auto max-w-screen-xl px-4 py-16" delay={0.2}>
-          <h2 className="text-2xl md:text-3xl font-semibold mb-6">Frequently Asked Questions</h2>
-          <FAQ
-            items={[
-              {
-                q: "Do you help with visa guidance?",
-                a: "Yes. We advise on requirements and help you prepare a strong application aligned with embassy/High Commission guidelines.",
-              },
-              {
-                q: "Which countries do you cover?",
-                a: "UK, US, Canada, Germany and more through our partner institutions.",
-              },
-              {
-                q: "Do you assist with accommodation?",
-                a: "Yes. We coordinate with partner institutions to help you secure suitable accommodation.",
-              },
-            ]}
-          />
+        <AnimatedSection id="faq" className="section bg-surface">
+          <div className="wrap grid gap-8 lg:grid-cols-[1fr_2fr]">
+            <h2 className="section-title">Frequently asked questions</h2>
+            <FAQ
+              items={[
+                {
+                  q: "Do you help with visa guidance?",
+                  a: "Yes. We advise on requirements and help you prepare a strong application aligned with embassy/High Commission guidelines.",
+                },
+                {
+                  q: "Which countries do you cover?",
+                  a: "UK, US, Canada, Germany and more through our partner institutions.",
+                },
+                {
+                  q: "Do you assist with accommodation?",
+                  a: "Yes. We coordinate with partner institutions to help you secure suitable accommodation.",
+                },
+              ]}
+            />
+          </div>
+        </AnimatedSection>
+
+        {/* CONTACT */}
+        <AnimatedSection id="contact" className="section">
+          <div className="wrap grid gap-10 lg:grid-cols-2">
+            <div>
+              <h2 className="section-title">Talk to us</h2>
+              <p className="section-intro">Tell us what you would like to study and we will help you plan your next step.</p>
+              <div className="mt-8 grid gap-4">
+                <ContactRow icon={<FaWhatsapp />} title="WhatsApp" value="08033321603" href={WHATSAPP_URL} />
+                <ContactRow icon={<FaPhone />} title="Phone" value="08033321603" href="tel:+2348033321603" />
+                <ContactRow
+                  icon={<FaEnvelope />}
+                  title="Email"
+                  value="dyseeducationconsults@gmail.com"
+                  href="mailto:dyseeducationconsults@gmail.com"
+                />
+              </div>
+            </div>
+
+            <ContactForm whatsappNumber={WHATSAPP_NUMBER} />
+          </div>
         </AnimatedSection>
       </main>
 
@@ -185,52 +264,52 @@ export default function HomePage() {
 
 /* === Local helpers === */
 
-function CountryCard({ href, src, label }: { href: string; src: string; label: string }) {
+function FeatureLink({
+  href,
+  title,
+  text,
+  action,
+  dark = false,
+}: {
+  href: string;
+  title: string;
+  text: string;
+  action: string;
+  dark?: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="block relative rounded-xl overflow-hidden shadow group transition-transform hover:-translate-y-0.5 hover:shadow"
+      className={`group flex flex-col rounded-2xl p-8 transition-shadow hover:shadow-lg ${
+        dark ? "bg-brand text-white" : "border border-line bg-brand-soft text-brand"
+      }`}
     >
-      <div className="relative aspect-[16/10]">
-        <Image
-          src={src}
-          alt=""
-          fill
-          sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
-          className="object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      </div>
-      <div className="absolute inset-x-0 bottom-0 bg-black/65 px-3 py-2 text-center">
-        <span className="text-sm text-white font-semibold">{label}</span>
-      </div>
+      <h2 className="text-2xl font-bold">{title}</h2>
+      <p className={`mt-3 mb-6 leading-relaxed ${dark ? "text-white/90" : "text-muted"}`}>{text}</p>
+      <span className="mt-auto flex items-center gap-2 font-semibold">
+        {action}
+        <FaArrowRight aria-hidden="true" className="text-sm transition-transform group-hover:translate-x-1" />
+      </span>
     </Link>
   );
 }
 
-function InfoCard({ title, value, href }: { title: string; value: string; href?: string }) {
-  const className =
-    "block min-w-0 rounded-xl border p-6 shadow-sm transition-transform hover:-translate-y-0.5 hover:shadow";
-  const heading = <h3 className="font-semibold mb-1">{title}</h3>;
-
-  if (!href) {
-    return (
-      <div className={className}>
-        {heading}
-        <p className="text-sm text-gray-600 [overflow-wrap:anywhere]">{value}</p>
-      </div>
-    );
-  }
-
+function ContactRow({ icon, title, value, href }: { icon: ReactNode; title: string; value: string; href: string }) {
   const external = href.startsWith("http");
   return (
     <a
       href={href}
-      className={className}
+      className="card flex items-center gap-4 p-4 transition-shadow hover:shadow-md"
       target={external ? "_blank" : undefined}
       rel={external ? "noopener noreferrer" : undefined}
     >
-      {heading}
-      <p className="text-sm text-gray-600 underline [overflow-wrap:anywhere]">{value}</p>
+      <span aria-hidden="true" className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-brand-soft text-lg text-brand">
+        {icon}
+      </span>
+      <span className="min-w-0">
+        <span className="block font-bold text-brand">{title}</span>
+        <span className="block text-sm text-muted [overflow-wrap:anywhere]">{value}</span>
+      </span>
     </a>
   );
 }

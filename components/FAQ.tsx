@@ -8,13 +8,13 @@ type QA = { q: string; a: string };
 export default function FAQ({ items }: { items: QA[] }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="divide-y rounded-xl border shadow-sm">
+    <div className="divide-y divide-line rounded-2xl border border-line bg-white shadow-sm">
       {items.map((item, idx) => {
         const isOpen = open === idx;
         return (
-          <div key={idx} className="p-4">
+          <div key={idx} className="p-4 sm:px-6">
             <button
-              className="w-full min-h-11 text-left font-medium flex items-center justify-between"
+              className="w-full min-h-11 text-left font-semibold flex items-center justify-between gap-4"
               onClick={() => setOpen(isOpen ? null : idx)}
               aria-expanded={isOpen}
             >
@@ -29,7 +29,7 @@ export default function FAQ({ items }: { items: QA[] }) {
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <p className="pt-3 text-sm text-gray-700">{item.a}</p>
+                  <p className="pt-2 pb-2 leading-relaxed text-muted">{item.a}</p>
                 </motion.div>
               )}
             </AnimatePresence>
