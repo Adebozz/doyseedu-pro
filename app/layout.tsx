@@ -6,7 +6,7 @@ const siteUrl = "https://www.doyseedu.com";
 const siteName = "Doyse Educational Consults";
 const siteTitle = `Study Abroad Consultants in Nigeria | ${siteName}`;
 const siteDescription =
-  "Study abroad placement, visa guidance and accommodation support for students in Nigeria. Study in the UK, US, Canada or Germany.";
+  "Study abroad placement, visa guidance and accommodation support for students in Nigeria, with options in the UK, Canada, Germany and more.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

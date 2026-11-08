@@ -1,58 +1,28 @@
 import Link from "next/link";
 
 export default function Footer() {
-  async function subscribe(formData: FormData) {
-    "use server";
-    const email = String(formData.get("email") || "").trim();
-    if (!email) return;
-    await fetch(`${process.env.NEXT_PUBLIC_BASE_URL ?? ""}/api/subscribe`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-      cache: "no-store",
-    });
-  }
-
   return (
     <footer className="mt-16 bg-[rgb(0,5,48)] text-white">
-      <div className="mx-auto max-w-screen-xl px-4 py-10 grid gap-10 md:grid-cols-3">
+      <div className="mx-auto max-w-screen-xl px-4 py-10 grid gap-10 md:grid-cols-2">
         <div>
           <Link href="/" className="font-semibold block mb-3">
             DOYSE EDUCATIONAL CONSULTS
           </Link>
           <p className="text-sm text-white/80">
-            Get updates about latest news and offers.
+            Study abroad placement, visa guidance and accommodation support.
           </p>
         </div>
 
         <div>
           <h3 className="font-semibold mb-3">Menu</h3>
           <ul className="text-sm">
-            <li><a className="inline-block py-3" href="#home">Home</a></li>
-            <li><a className="inline-block py-3" href="#about">About us</a></li>
-            <li><a className="inline-block py-3" href="#contact">Contact</a></li>
-            <li><a className="inline-block py-3" href="#where">Where to go</a></li>
-            <li><a className="inline-block py-3" href="#why">Why choose us</a></li>
+            <li><a className="inline-block py-3" href="/#home">Home</a></li>
+            <li><a className="inline-block py-3" href="/#about">About us</a></li>
+            <li><a className="inline-block py-3" href="/#contact">Contact</a></li>
+            <li><a className="inline-block py-3" href="/#where">Where to go</a></li>
+            <li><a className="inline-block py-3" href="/#why">Why choose us</a></li>
+            <li><Link className="inline-block py-3" href="/eligibility-checker">Check your eligibility</Link></li>
           </ul>
-        </div>
-
-        <div>
-          <h3 className="font-semibold mb-3">Sign Up</h3>
-          <p className="text-sm text-white/80 mb-3">Get updates about latest news and offers</p>
-          <form action={subscribe} className="flex gap-2">
-            <label htmlFor="subscribe-email" className="sr-only">Your email</label>
-            <input
-              id="subscribe-email"
-              type="email"
-              name="email"
-              required
-              placeholder="Your email"
-              className="w-full rounded px-3 py-2 text-sm text-gray-900"
-            />
-            <button type="submit" className="px-4 py-2 text-sm rounded bg-cyan-400 text-black hover:bg-cyan-300">
-              Sign Up
-            </button>
-          </form>
         </div>
       </div>
 

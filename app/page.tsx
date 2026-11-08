@@ -1,14 +1,14 @@
 import Image from "next/image";
+import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AnimatedSection from "@/components/AnimatedSection";
 import FAQ from "@/components/FAQ";
 import ContactForm from "@/components/ContactForm";
+import { countries } from "@/lib/countries";
+import { WHATSAPP_NUMBER, whatsappUrl } from "@/lib/site";
 
-const WHATSAPP_NUMBER = "2348033321603";
-const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  "Hello, I would like to ask about studying abroad."
-)}`;
+const WHATSAPP_URL = whatsappUrl("Hello, I would like to ask about studying abroad.");
 
 export default function HomePage() {
   return (
@@ -25,10 +25,10 @@ export default function HomePage() {
           <div className="relative mx-auto max-w-screen-xl px-4 text-center text-white">
             <div className="mx-auto max-w-2xl rounded-2xl border border-white/60 bg-white/5 p-8">
               <h1 className="text-3xl md:text-5xl font-bold mb-4">
-                Study in the UK, US, Canada or Germany
+                Study abroad from Nigeria
               </h1>
               <p className="text-lg md:text-xl mb-2">
-                Study abroad placement, visa guidance and accommodation support for students in Nigeria.
+                Placement, visa guidance and accommodation support for the UK, Canada, Germany and more.
               </p>
               <p className="italic">“Quality education at your fingertips”</p>
               <div className="mt-6 flex flex-col sm:flex-row justify-center gap-3">
@@ -40,12 +40,12 @@ export default function HomePage() {
                 >
                   Chat with us on WhatsApp
                 </a>
-                <a
-                  href="#contact"
+                <Link
+                  href="/eligibility-checker"
                   className="rounded border border-white font-semibold px-6 py-3 hover:bg-white/10"
                 >
-                  Contact us
-                </a>
+                  Check your eligibility
+                </Link>
               </div>
             </div>
           </div>
@@ -114,10 +114,14 @@ export default function HomePage() {
             Countries we work with:
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <CountryCard src="/images/uk.jpg" alt="United Kingdom" label="United Kingdom" />
-            <CountryCard src="/images/us.jpg" alt="United States" label="United States" />
-            <CountryCard src="/images/germeny.jpg" alt="Germany" label="Germany" />
-            <CountryCard src="/images/canada.jpg" alt="Canada" label="Canada" />
+            {countries.map((country) => (
+              <CountryCard
+                key={country.slug}
+                href={`/study-abroad/${country.slug}`}
+                src={country.image}
+                label={country.name}
+              />
+            ))}
           </div>
         </AnimatedSection>
 
@@ -176,22 +180,25 @@ export default function HomePage() {
 
 /* === Local helpers === */
 
-function CountryCard({ src, alt, label }: { src: string; alt: string; label: string }) {
+function CountryCard({ href, src, label }: { href: string; src: string; label: string }) {
   return (
-    <div className="relative rounded-xl overflow-hidden shadow group transition-transform hover:-translate-y-0.5 hover:shadow">
+    <Link
+      href={href}
+      className="block relative rounded-xl overflow-hidden shadow group transition-transform hover:-translate-y-0.5 hover:shadow"
+    >
       <div className="relative aspect-[16/10]">
         <Image
           src={src}
-          alt={alt}
+          alt=""
           fill
           sizes="(min-width: 1024px) 25vw, (min-width: 768px) 33vw, 50vw"
           className="object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
-      <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity grid place-items-center">
-        <span className="text-white font-semibold">{label}</span>
+      <div className="absolute inset-x-0 bottom-0 bg-black/65 px-3 py-2 text-center">
+        <span className="text-sm text-white font-semibold">{label}</span>
       </div>
-    </div>
+    </Link>
   );
 }
 
