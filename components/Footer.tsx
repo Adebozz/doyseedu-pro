@@ -2,12 +2,12 @@ import Link from "next/link";
 import { countries } from "@/lib/countries";
 import { WHATSAPP_NUMBER } from "@/lib/site";
 
-const linkClass = "inline-block py-2 text-white/80 hover:text-white";
+const linkClass = "inline-block py-2 lg:py-1 text-white/80 hover:text-white";
 
 export default function Footer() {
   return (
     <footer className="bg-brand text-white">
-      <div className="wrap py-12 grid gap-10 grid-cols-2 lg:grid-cols-4">
+      <div className="wrap py-8 grid gap-8 grid-cols-2 lg:grid-cols-4">
         <div className="col-span-2 lg:col-span-1">
           <Link href="/" className="font-bold tracking-wide block mb-3">
             DOYSE EDUCATIONAL CONSULTS
@@ -56,7 +56,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="text-center text-xs text-white/80 py-4 px-4 border-t border-white/10">
+      <div className="text-center text-xs text-white/80 py-3 px-4 border-t border-white/10">
         Copyright &copy; {new Date().getFullYear()}. All rights reserved. Developed by Adeboss
       </div>
     </footer>
