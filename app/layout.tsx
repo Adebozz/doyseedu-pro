@@ -2,16 +2,45 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Script from "next/script";
 
+const siteUrl = "https://www.doyseedu.com";
+const siteName = "Doyse Educational Consults";
+const siteTitle = `Study Abroad Consultants in Nigeria | ${siteName}`;
+const siteDescription =
+  "Study abroad placement, visa guidance and accommodation support for students in Nigeria. Study in the UK, US, Canada or Germany.";
+
 export const metadata: Metadata = {
-  title: "DoyseConsults | Educational",
-  description: "Quality education at your fingertips",
-  icons: { icon: "/images/doyseedu.svg" },
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  alternates: { canonical: "/" },
+  icons: { icon: "/images/logo.png" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName,
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/pic.jpg"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/images/pic.jpg"],
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className="w-full max-w-full overflow-x-hidden">
       <body className="min-h-screen w-full max-w-full overflow-x-hidden text-[var(--color-foreground)] bg-[var(--color-background)]">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-white focus:px-4 focus:py-2 focus:text-black"
+        >
+          Skip to content
+        </a>
+
         {children}
 
         {/* Tawk.to */}
@@ -30,23 +59,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
 
         {/* JSON-LD */}
-        <Script id="org-schema" type="application/ld+json" strategy="afterInteractive">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "EducationalOrganization",
-            "name": "Doyse Educational Consults",
-            "url": "https://your-domain.com",
-            "logo": "https://your-domain.com/images/doyseedu.svg",
-            "description": "Study abroad placements, visa guidance, and student support.",
-            "sameAs": ["https://www.facebook.com/yourpage"],
-            "contactPoint": {
-              "@type": "ContactPoint",
-              "telephone": "+2348033321603",
-              "contactType": "Customer Service",
-              "areaServed": ["NG","GB","US","CA","DE"]
-            }
-          })}
-        </Script>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "EducationalOrganization",
+              "name": siteName,
+              "url": siteUrl,
+              "logo": `${siteUrl}/images/logo.png`,
+              "description": "Study abroad placements, visa guidance, and student support.",
+              "contactPoint": {
+                "@type": "ContactPoint",
+                "telephone": "+2348033321603",
+                "contactType": "Customer Service",
+                "areaServed": ["NG","GB","US","CA","DE"]
+              }
+            }),
+          }}
+        />
       </body>
     </html>
   );

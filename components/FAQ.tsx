@@ -14,7 +14,7 @@ export default function FAQ({ items }: { items: QA[] }) {
         return (
           <div key={idx} className="p-4">
             <button
-              className="w-full text-left font-medium flex items-center justify-between"
+              className="w-full min-h-11 text-left font-medium flex items-center justify-between"
               onClick={() => setOpen(isOpen ? null : idx)}
               aria-expanded={isOpen}
             >

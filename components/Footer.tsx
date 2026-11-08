@@ -27,12 +27,12 @@ export default function Footer() {
 
         <div>
           <h3 className="font-semibold mb-3">Menu</h3>
-          <ul className="space-y-2 text-sm">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About us</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#where">Where to go</a></li>
-            <li><a href="#why">Why choose us</a></li>
+          <ul className="text-sm">
+            <li><a className="inline-block py-3" href="#home">Home</a></li>
+            <li><a className="inline-block py-3" href="#about">About us</a></li>
+            <li><a className="inline-block py-3" href="#contact">Contact</a></li>
+            <li><a className="inline-block py-3" href="#where">Where to go</a></li>
+            <li><a className="inline-block py-3" href="#why">Why choose us</a></li>
           </ul>
         </div>
 
@@ -40,7 +40,9 @@ export default function Footer() {
           <h3 className="font-semibold mb-3">Sign Up</h3>
           <p className="text-sm text-white/80 mb-3">Get updates about latest news and offers</p>
           <form action={subscribe} className="flex gap-2">
+            <label htmlFor="subscribe-email" className="sr-only">Your email</label>
             <input
+              id="subscribe-email"
               type="email"
               name="email"
               required
@@ -55,7 +57,7 @@ export default function Footer() {
       </div>
 
       <div className="text-center text-xs text-white/80 py-4 border-t border-white/10">
-        Copyright &copy; 2025. All right reserved. Developed by Adeboss
+        Copyright &copy; {new Date().getFullYear()}. All rights reserved. Developed by Adeboss
       </div>
     </footer>
   );

@@ -15,11 +15,11 @@ export default function Header() {
     >
       <div className="mx-auto max-w-screen-xl px-4 h-full flex items-center justify-between">
         <Link href="#home" className="flex items-center gap-3">
-          <Image src="/images/doyseedu.svg" alt="Logo" width={40} height={40} priority />
+          <Image src="/images/logo.png" alt="Doyse Educational Consults logo" width={40} height={40} priority />
           <h4 className="font-semibold tracking-wide">DOYSE EDUCATIONAL CONSULTS</h4>
         </Link>
 
-        <button aria-label="Toggle menu" className="md:hidden p-2" onClick={() => setOpen(v => !v)}>
+        <button aria-label="Toggle menu" aria-expanded={open} className="md:hidden p-3" onClick={() => setOpen(v => !v)}>
           <FaBars className="text-xl" />
         </button>
 
