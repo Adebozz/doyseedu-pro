@@ -6,6 +6,7 @@ const baseUrl = "https://www.doyseedu.com";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: `${baseUrl}/` },
+    { url: `${baseUrl}/scholarships` },
     { url: `${baseUrl}/eligibility-checker` },
     ...countries.map(({ slug }) => ({ url: `${baseUrl}/study-abroad/${slug}` })),
   ];

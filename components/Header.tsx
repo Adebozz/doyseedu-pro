@@ -24,11 +24,12 @@ export default function Header() {
         </button>
 
         <nav className="hidden lg:block">
-          <ul className="flex items-center gap-6 text-sm">
+          <ul className="flex items-center gap-4 xl:gap-6 whitespace-nowrap text-sm">
             <li><Link className="hover:text-cyan-300" href="/#home">HOME</Link></li>
             <li><Link className="hover:text-cyan-300" href="/#about">ABOUT</Link></li>
             <li><Link className="hover:text-cyan-300" href="/#why">WHY US ?</Link></li>
             <li><Link className="hover:text-cyan-300" href="/#where">WHERE TO STUDY ?</Link></li>
+            <li><Link className="hover:text-cyan-300" href="/scholarships">SCHOLARSHIPS</Link></li>
             <li><Link className="hover:text-cyan-300" href="/eligibility-checker">ELIGIBILITY</Link></li>
             <li><Link className="hover:text-cyan-300" href="/#contact">CONTACT</Link></li>
           </ul>
@@ -42,6 +43,7 @@ export default function Header() {
             <li><Link href="/#about" onClick={() => setOpen(false)}>ABOUT</Link></li>
             <li><Link href="/#why" onClick={() => setOpen(false)}>WHY US ?</Link></li>
             <li><Link href="/#where" onClick={() => setOpen(false)}>WHERE TO STUDY ?</Link></li>
+            <li><Link href="/scholarships" onClick={() => setOpen(false)}>SCHOLARSHIPS</Link></li>
             <li><Link href="/eligibility-checker" onClick={() => setOpen(false)}>ELIGIBILITY</Link></li>
             <li><Link href="/#contact" onClick={() => setOpen(false)}>CONTACT</Link></li>
           </ul>

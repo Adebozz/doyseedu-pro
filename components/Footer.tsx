@@ -21,6 +21,7 @@ export default function Footer() {
             <li><a className="inline-block py-3" href="/#contact">Contact</a></li>
             <li><a className="inline-block py-3" href="/#where">Where to go</a></li>
             <li><a className="inline-block py-3" href="/#why">Why choose us</a></li>
+            <li><Link className="inline-block py-3" href="/scholarships">Scholarships</Link></li>
             <li><Link className="inline-block py-3" href="/eligibility-checker">Check your eligibility</Link></li>
           </ul>
         </div>

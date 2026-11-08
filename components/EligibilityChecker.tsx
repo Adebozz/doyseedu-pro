@@ -193,6 +193,14 @@ export default function EligibilityChecker({ destinations }: { destinations: Des
           </p>
         )}
 
+        {(answers.funding === PARTLY_FUNDED || answers.funding === NEEDS_SCHOLARSHIP) && (
+          <p className="mb-6">
+            <Link href="/scholarships" className="inline-block py-2 underline">
+              See scholarships open to Nigerian students
+            </Link>
+          </p>
+        )}
+
         <label htmlFor="checker-name" className="block font-semibold mb-1">
           Your name (optional)
         </label>

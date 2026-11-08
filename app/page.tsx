@@ -123,6 +123,12 @@ export default function HomePage() {
               />
             ))}
           </div>
+          <p className="mt-8 text-center">
+            Looking for funding?{" "}
+            <Link href="/scholarships" className="inline-block py-2 font-semibold underline">
+              See scholarships open to Nigerian students
+            </Link>
+          </p>
         </AnimatedSection>
 
         {/* CONTACT */}
@@ -135,9 +141,8 @@ export default function HomePage() {
 
           <div className="mx-auto max-w-screen-xl px-4 py-12">
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="grid gap-6 sm:grid-cols-2">
+              <div className="grid gap-6">
                 <InfoCard title="Phone" value="08033321603" href="tel:+2348033321603" />
-                <InfoCard title="Facebook" value="Doyse Education Consult Limited" />
                 <InfoCard title="WhatsApp" value="08033321603" href={WHATSAPP_URL} />
                 <InfoCard
                   title="Email"
